@@ -8,9 +8,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HomeActivity" >
 
-    <TextView
+    <Button
+        android:id="@+id/homeToNearbyMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignLeft="@+id/homeToCyrideMaps"
+        android:layout_below="@+id/homeToCyrideMaps"
+        android:layout_marginTop="39dp"
+        android:text="NearbyMap" />
+
+    <Button
+        android:id="@+id/homeToRestaurantInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeToNearbyMap"
+        android:layout_centerVertical="true"
+        android:text="Rest. Info" />
+
+    <Button
+        android:id="@+id/homeToRestaurantResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/homeToRestaurantInfo"
+        android:layout_alignLeft="@+id/homeToRestaurant"
+        android:text="Rest. Results" />
+
+    <Button
+        android:id="@+id/homeToSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/homeToRestaurantInfo"
+        android:layout_below="@+id/homeToRestaurantInfo"
+        android:layout_marginTop="48dp"
+        android:text="Settings" />
+
+    <Button
+        android:id="@+id/homeToCyrideMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="14dp"
+        android:text="CyrideMaps" />
+
+    <Button
+        android:id="@+id/homeToRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/homeToNearbyMap"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/homeToCyrideMaps"
+        android:text="Restaurant" />
+
+    <Button
+        android:id="@+id/homeToCyrideNoMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/homeToNearbyMap"
+        android:layout_toRightOf="@+id/homeToNearbyMap"
+        android:text="CyrideNoMaps" />
 
 </RelativeLayout>
