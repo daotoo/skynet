@@ -1,5 +1,7 @@
 <resources>
 
-    <color name="black_overlay">#66000000</color>
+    <color name="blank_overlay">#FF3030</color>
+    <color name="splash_screen">#DC143C</color>
+    <color name="Text_yellow">#FFFF00</color>
 
 </resources>
