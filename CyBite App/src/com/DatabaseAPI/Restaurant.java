@@ -13,6 +13,8 @@ import java.util.List;
 		private int Cost;
 		
 		private double Rating;
+		
+		private String Review;
 
 		/**
 		 * @return the iD
@@ -82,6 +84,23 @@ import java.util.List;
 		 */
 		public void setRating(double rating) {
 			Rating = rating;
+		}
+		
+		/**
+		 * 
+		 * @return review 
+		 */
+		public String getReview(){
+			return Review;
+		}
+		
+		/***
+		 *
+		 * @param review
+		 */
+		public void setReview(String review){
+			Review = review;
+			
 		}
 
 	}

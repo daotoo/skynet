@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import com.DatabaseAPI.Restaurant;
 
 
 public class DatabaseAPI {
@@ -45,6 +45,37 @@ public class DatabaseAPI {
 	}
 	
 	//Public get methods
+	
+	public ArrayList<Restaurant> getRestaurantSearchResults(int costFilter, int ratingFilter, String genreFilter)
+	{
+		ArrayList<Restaurant> res = new ArrayList<Restaurant>();
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant r WHERE r.Cost = ? OR ? = 0 " +
+					"AND r.Rating = ? OR ? = 0 AND r.Genre = ? OR ? = '' ");
+			ps.setInt(1, costFilter);
+			ps.setInt(2, costFilter);
+			ps.setInt(3, ratingFilter);
+			ps.setInt(4, ratingFilter);
+			ps.setString(5, genreFilter);
+			ps.setString(6, genreFilter);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+			{
+				Restaurant restaurant = new Restaurant();
+				restaurant.setCost(rs.getInt("Cost"));
+				restaurant.setRating(rs.getInt("Rating"));
+				restaurant.setGenre(rs.getString("Genre"));
+				restaurant.setName(rs.getString("Name"));
+				restaurant.setReview(rs.getString("Review"));
+				res.add(restaurant);
+			}
+		} catch (SQLException e) {
+			System.out.println("There was an error in the getRestaurantSearchResult method. Error message: " + e.getMessage());
+		}
+		return res;
+		
+		
+	}
 	
 	/**
 	 * Disconnections to the database being used for the ShoppingSidekick application.
