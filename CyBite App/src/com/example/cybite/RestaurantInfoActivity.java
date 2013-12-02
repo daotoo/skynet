@@ -14,7 +14,28 @@ public class RestaurantInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_restaurant_info);
 		
-		//to cyride maps
+		//to jumbos stuff
+		Intent i = getIntent();
+		String id = i.getExtras().getString("restaurantID");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		Button goToHome= (Button) findViewById(R.id.restInfoToHome);
 		goToHome.setOnClickListener(new View.OnClickListener() {
 			@Override
