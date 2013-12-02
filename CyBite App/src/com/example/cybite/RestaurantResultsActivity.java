@@ -1,30 +1,61 @@
 package com.example.cybite;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class RestaurantResultsActivity extends Activity {
+import com.DatabaseAPI.Restaurant;
 
+public class RestaurantResultsActivity extends Activity{
+
+	ListView resultsListView;
+	ArrayList<String> listItems;
+	ArrayList<Restaurant> searchResultsList;
+	ArrayAdapter<String> adapter;
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_restaurant_results);
+		listItems = new ArrayList<String>();
+		Intent i = getIntent();
+		searchResultsList = (ArrayList<Restaurant>) i.getExtras().get("searchResultsList");
+		for(int j = 0; j < searchResultsList.size(); j++){
+			Restaurant r = searchResultsList.get(j);
+			String name = r.getName();
+			listItems.add(name);
+		}
 		
-		//to cyride maps
-		Button goToHome= (Button) findViewById(R.id.restResultsToHome);
-		goToHome.setOnClickListener(new View.OnClickListener() {
+		if(listItems.size() == 0)
+			listItems.add("No search results found");
+		
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+		resultsListView = (ListView) findViewById(R.id.resultsListView);
+		resultsListView.setAdapter(adapter);
+		resultsListView.setOnItemClickListener(new OnItemClickListener(){
 			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(RestaurantResultsActivity.this, HomeActivity.class);
-				startActivity(i);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				String str = (String) resultsListView.getItemAtPosition(position);
+				if(!str.equals("No search results found")){
+					Restaurant r = searchResultsList.get(position);
+					Intent i = new Intent(RestaurantResultsActivity.this, RestaurantInfoActivity.class);
+					i.putExtra("restaurant", r);
+					startActivity(i);
+				}
 			}
 		});
+		adapter.notifyDataSetChanged();
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

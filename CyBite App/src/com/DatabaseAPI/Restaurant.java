@@ -1,7 +1,7 @@
 package com.DatabaseAPI;
-import java.util.List;
+import java.io.Serializable;
 
-	public class Restaurant
+	public class Restaurant implements Serializable
 	{
 
 		private String ID;
