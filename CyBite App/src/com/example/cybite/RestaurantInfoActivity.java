@@ -38,18 +38,20 @@ public class RestaurantInfoActivity extends Activity {
 		
 		
 		double ratValue = r.getRating();
+		int costValue = r.getCost();
 		String strRat = new DecimalFormat("#.#").format(ratValue);
+		String strCost = new DecimalFormat("#").format(costValue);
 	
 		TextView name = (TextView) findViewById(R.id.restaurantName);
 		TextView genre = (TextView) findViewById(R.id.restaurantGenre);
 		TextView cost = (TextView) findViewById(R.id.restaurantCost);
 		TextView rating = (TextView) findViewById(R.id.restaurantRating);
 		TextView review = (TextView) findViewById(R.id.restaurantReview);
-		TextView address = (TextView) findViewById(R.id.restaurantName);
+		TextView address = (TextView) findViewById(R.id.restaurantAddress);
 		
 		name.setText(r.getName());
 		genre.setText(r.getGenre());
-		cost.setText(r.getCost());
+		cost.setText(strCost);
 		rating.setText(strRat);
 		review.setText(r.getReview());
 		address.setText(r.getAddress());
