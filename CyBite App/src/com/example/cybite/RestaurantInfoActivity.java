@@ -18,24 +18,6 @@ public class RestaurantInfoActivity extends Activity {
 		Intent i = getIntent();
 		String id = i.getExtras().getString("restaurantID");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		Button goToHome= (Button) findViewById(R.id.restInfoToHome);
 		goToHome.setOnClickListener(new View.OnClickListener() {
 			@Override
