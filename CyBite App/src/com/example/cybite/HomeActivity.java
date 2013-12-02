@@ -20,17 +20,7 @@ public class HomeActivity extends Activity {
 		goToCyrideMaps.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, CyrideMapsActivity.class);
-				startActivity(i);
-			}
-		});
-		
-		//to cyride w/ no maps
-		Button goToCyrideNoMaps= (Button) findViewById(R.id.homeToCyrideNoMaps);
-		goToCyrideNoMaps.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, CyrideNoMaps.class);
+				Intent i = new Intent(HomeActivity.this, PrepCyRideMapsActivity.class);
 				startActivity(i);
 			}
 		});

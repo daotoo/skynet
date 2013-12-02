@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.54"
+        android:text="Please select routes you wish to view below...\n"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TableLayout
+        android:layout_width="320dp"
+        android:layout_height="fill_parent" >
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_column="0"
+                android:text="1 Red" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_column="1"
+                android:text="1A Red" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_column="2"
+                android:text="1B Red" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_column="0"
+                android:text="2 Green" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_column="1"
+                android:text="3 Blue" />
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_column="2"
+                android:text="4 Gray" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox7"
+                android:layout_column="0"
+                android:text="4A Gray" />
+
+            <CheckBox
+                android:id="@+id/checkBox8"
+                android:layout_column="1"
+                android:text="5 Yellow" />
+
+            <CheckBox
+                android:id="@+id/checkBox9"
+                android:layout_column="0"
+                android:text="6 Brown" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox10"
+                android:layout_column="0"
+                android:text="6A Brown" />
+
+            <CheckBox
+                android:id="@+id/checkBox11"
+                android:layout_column="1"
+                android:text="6B Brown" />
+
+            <CheckBox
+                android:id="@+id/checkBox12"
+                android:layout_column="2"
+                android:text="7 Purple" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox13"
+                android:layout_column="0"
+                android:text="8 Aqua" />
+
+            <CheckBox
+                android:id="@+id/checkBox14"
+                android:layout_column="1"
+                android:text="10 Pink" />
+
+            <CheckBox
+                android:id="@+id/checkBox15"
+                android:layout_column="2"
+                android:text="21 Cardinal" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/checkBox16"
+                android:layout_column="0"
+                android:text="22 Gold" />
+
+            <CheckBox
+                android:id="@+id/checkBox17"
+                android:layout_column="1"
+                android:text="23 Orange" />
+
+            <CheckBox
+                android:id="@+id/checkBox18"
+                android:layout_column="2"
+                android:text="24 Silver" />
+        </TableRow>
+    </TableLayout>
+     <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.54"
+        android:text="\n"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+     <Button
+         android:id="@+id/ShowRoutes"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="Show routes" />
+
+</LinearLayout>
