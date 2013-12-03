@@ -31,7 +31,7 @@ public class RestaurantInfoActivity extends Activity {
 		goToMaps.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(RestaurantInfoActivity.this, CyrideMapsActivity.class);
+				Intent i = new Intent(RestaurantInfoActivity.this, PrepCyRideMapsActivity.class);
 				startActivity(i);
 			}
 		});

@@ -61,12 +61,4 @@
         android:layout_toRightOf="@+id/homeToCyrideMaps"
         android:text="Restaurant" />
 
-    <Button
-        android:id="@+id/homeToCyrideNoMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/homeToNearbyMap"
-        android:layout_toRightOf="@+id/homeToNearbyMap"
-        android:text="CyrideNoMaps" />
-
 </RelativeLayout>

@@ -13,7 +13,7 @@
     <string name="title_activity_near_by">NearByActivity</string>
     <string name="title_activity_restaurant_results">RestaurantResultsActivity</string>
     <string name="title_activity_restaurant_info">RestaurantInfoActivity</string>
+    <string name="title_activity_preperation_cyride_maps">PrepCyrideMapsActivity</string>
     <string name="title_activity_cyride_maps">CyrideMapsActivity</string>
-    <string name="title_activity_cyride_no_maps">CyrideNoMaps</string>
 
 </resources>
