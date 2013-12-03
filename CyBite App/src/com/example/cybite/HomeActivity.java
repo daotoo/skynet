@@ -44,27 +44,7 @@ public class HomeActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		
-		//to restaurant info
-		Button goToRestInfo = (Button) findViewById(R.id.homeToRestaurantInfo);
-		goToRestInfo.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, RestaurantInfoActivity.class);
-				startActivity(i);
-			}
-		});
-		
-		//to restaurant results
-		Button goToRestResults = (Button) findViewById(R.id.homeToRestaurantResults);
-		goToRestResults.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, RestaurantResultsActivity.class);
-				startActivity(i);
-			}
-		});
-		
+				
 		//to settings
 		Button goToSettings = (Button) findViewById(R.id.homeToSettings);
 		goToSettings.setOnClickListener(new View.OnClickListener() {
