@@ -18,27 +18,11 @@
         android:text="NearbyMap" />
 
     <Button
-        android:id="@+id/homeToRestaurantInfo"
+        android:id="@+id/homeToSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/homeToNearbyMap"
         android:layout_centerVertical="true"
-        android:text="Rest. Info" />
-
-    <Button
-        android:id="@+id/homeToRestaurantResults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/homeToRestaurantInfo"
-        android:layout_alignLeft="@+id/homeToRestaurant"
-        android:text="Rest. Results" />
-
-    <Button
-        android:id="@+id/homeToSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/homeToRestaurantInfo"
-        android:layout_below="@+id/homeToRestaurantInfo"
         android:layout_marginTop="48dp"
         android:text="Settings" />
 

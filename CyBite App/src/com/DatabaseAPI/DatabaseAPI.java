@@ -46,18 +46,23 @@ public class DatabaseAPI {
 	
 	//Public get methods
 	
-	public ArrayList<Restaurant> getRestaurantSearchResults(int costFilter, int ratingFilter, String genreFilter)
+	public ArrayList<Restaurant> getRestaurantSearchResults(int costFilter, int ratingFilter, String genreFilter, 
+			String nameFilter, String addressFilter)
 	{
 		ArrayList<Restaurant> res = new ArrayList<Restaurant>();
 		try {
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant r WHERE r.Cost = ? OR ? = 0 " +
-					"AND r.Rating = ? OR ? = 0 AND r.Genre = ? OR ? = '' ");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant r WHERE (r.Cost = ? OR ? = 0) AND (r.Rating = ? OR ? = 0) AND (r.Genre = ? OR ? = '') AND (r.Name LIKE ? OR ? = '') AND (r.Address = ? OR ? = '')");
 			ps.setInt(1, costFilter);
 			ps.setInt(2, costFilter);
 			ps.setInt(3, ratingFilter);
 			ps.setInt(4, ratingFilter);
 			ps.setString(5, genreFilter);
 			ps.setString(6, genreFilter);
+			ps.setString(7, nameFilter);
+			ps.setString(8, nameFilter);
+			ps.setString(9, addressFilter);
+			ps.setString(10, addressFilter);
+			
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
 			{
@@ -67,6 +72,9 @@ public class DatabaseAPI {
 				restaurant.setGenre(rs.getString("Genre"));
 				restaurant.setName(rs.getString("Name"));
 				restaurant.setReview(rs.getString("Review"));
+				restaurant.setLat(rs.getFloat("Lat"));
+				restaurant.setLong(rs.getFloat("Lgt"));
+				restaurant.setAddress(rs.getString("Address"));
 				res.add(restaurant);
 			}
 		} catch (SQLException e) {

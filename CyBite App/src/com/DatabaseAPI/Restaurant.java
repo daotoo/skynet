@@ -1,7 +1,9 @@
 package com.DatabaseAPI;
-import java.util.List;
 
-	public class Restaurant
+import java.io.Serializable;
+
+
+	public class Restaurant implements Serializable
 	{
 
 		private String ID;
@@ -15,6 +17,12 @@ import java.util.List;
 		private double Rating;
 		
 		private String Review;
+		
+		private float Lat;
+		
+		private float Lgt;
+		
+		private String Address;
 
 		/**
 		 * @return the iD
@@ -101,6 +109,60 @@ import java.util.List;
 		public void setReview(String review){
 			Review = review;
 			
+		}
+		
+		/**
+		 * Returns longitude of the restaurant.
+		 * 
+		 * @return
+		 */
+		public float getLongitude(){
+			return Lgt;
+		}
+		
+		/**
+		 * Set longitude of a restaurant.
+		 * 
+		 * @param longitude
+		 */
+		public void setLong(float longitude){
+			Lgt = longitude;
+		}
+		
+		/**
+		 * Get latitude of a restaurant.
+		 * 
+		 * @return
+		 */
+		public float getLat(){
+			return Lat;
+		}
+		
+		/**
+		 * Set latitude of the restaurant.
+		 * 
+		 * @param latitude
+		 */
+		public void setLat(float latitude){
+			Lat = latitude;
+		}
+		
+		/**
+		 *Returns the address of the restaurant. 
+		 *
+		 * @return
+		 */
+		public String getAddress(){
+			return Address;
+		}
+		
+		/**
+		 * Sets the address of the restaurant
+		 * 
+		 * @param address
+		 */
+		public void setAddress(String address){
+			Address = address;
 		}
 
 	}
