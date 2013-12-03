@@ -58,7 +58,7 @@ public class DatabaseAPI {
 			ps.setInt(4, ratingFilter);
 			ps.setString(5, genreFilter);
 			ps.setString(6, genreFilter);
-			ps.setString(7, nameFilter);
+			ps.setString(7, "%" + nameFilter +  "%");
 			ps.setString(8, nameFilter);
 			ps.setString(9, addressFilter);
 			ps.setString(10, addressFilter);
