@@ -64,7 +64,7 @@ public class DatabaseAPI {
 			ps.setString(10, addressFilter);
 			
 			ResultSet rs = ps.executeQuery();
-			if(rs.next())
+			while(rs.next())
 			{
 				Restaurant restaurant = new Restaurant();
 				restaurant.setCost(rs.getInt("Cost"));
