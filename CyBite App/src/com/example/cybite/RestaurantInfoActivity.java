@@ -32,6 +32,7 @@ public class RestaurantInfoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(RestaurantInfoActivity.this, PrepCyRideMapsActivity.class);
+				i.putExtra("restaurant", r);
 				startActivity(i);
 			}
 		});

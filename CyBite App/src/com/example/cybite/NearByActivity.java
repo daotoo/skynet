@@ -142,8 +142,7 @@ public class NearByActivity extends FragmentActivity {
 				 	.position(new LatLng(rests.get(i).getLat(), rests.get(i).getLongitude()))
 				 	.snippet(rests.get(i).getName() + "\na " + rests.get(i).getGenre() + " restaurant")
 				 	.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-				    .title(rests.get(i).getName()))
-				    .showInfoWindow();
+				    .title(rests.get(i).getName()));
 					googleMap.setOnMarkerClickListener(new OnMarkerClickListener()
 		                {
 

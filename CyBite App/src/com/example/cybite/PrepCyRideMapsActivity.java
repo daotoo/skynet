@@ -3,11 +3,15 @@ package com.example.cybite;
 
 import java.util.ArrayList;
 
+import com.DatabaseAPI.Restaurant;
+
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -21,8 +25,17 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prep_cyridemaps);
         
+        Button viewTimesButton = (Button) findViewById(R.id.ViewTimes);
+        viewTimesButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.cyride.com/index.aspx?page=897"));
+				startActivity(browserIntent);
+			} });
+        
         Button submitButton = (Button) findViewById(R.id.ShowRoutes);
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -30,12 +43,13 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
 				for(int i = 0; i < checkboxes.length; i++)
 				{
 					CheckBox box = (CheckBox) findViewById(checkboxes[i]);
-					if(box.isChecked())
+					if(box.isChecked() || ((CheckBox) findViewById(R.id.checkBox19)).isChecked())
 					{
 						checkedBoxes.add(box.getText().toString());
 					}				
 				}
 				 Intent intent = new Intent(PrepCyRideMapsActivity.this, CyRideMapsActivity.class);
+				 intent.putExtra("restaurant", (Restaurant) getIntent().getExtras().get("restaurant"));
 				 intent.putExtra("CheckedBoxes", checkedBoxes);
 				 PrepCyRideMapsActivity.this.startActivity(intent);
 			}
