@@ -14,7 +14,7 @@ import java.io.Serializable;
 		
 		private int Cost;
 		
-		private double Rating;
+		private float Rating;
 		
 		private String Review;
 		
@@ -83,14 +83,14 @@ import java.io.Serializable;
 		/**
 		 * @return the rating
 		 */
-		public double getRating() {
+		public float getRating() {
 			return Rating;
 		}
 
 		/**
 		 * @param rating the rating to set
 		 */
-		public void setRating(double rating) {
+		public void setRating(float rating) {
 			Rating = rating;
 		}
 		
