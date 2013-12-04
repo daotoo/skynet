@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -17,8 +17,8 @@
         android:layout_gravity="fill_vertical" />
 
     <TableLayout
-        android:layout_width="279dp"
-        android:layout_height="229dp" >
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -30,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp" />
         </TableRow>
 
         <TableRow
@@ -43,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" 
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
         </TableRow>
 
         <TableRow
@@ -56,7 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp" />
         </TableRow>
 
         <TableRow
@@ -75,7 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp" />
         </TableRow>
 
         <TableRow
@@ -88,17 +92,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp" />
         </TableRow>
 
-        <RatingBar
-            android:id="@+id/ratingBar1"
-             android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:clickable="false"
-                    android:numStars="5" />
-
     </TableLayout>
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:isIndicator="true"
+        android:max="5"
+        android:numStars="5"
+        android:stepSize="1" />
 
     <Button
         android:id="@+id/restInfoToMaps"
