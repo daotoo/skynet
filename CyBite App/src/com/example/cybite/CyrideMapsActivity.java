@@ -1,6 +1,7 @@
 package com.example.cybite;
 import java.util.ArrayList;
 
+import com.DatabaseAPI.Restaurant;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdate;
@@ -51,6 +52,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 
 	        // Getting GoogleMap object from the fragment
 	        googleMap = fm.getMap();
+	        googleMap.clear();
 
 	        // Enabling MyLocation Layer of Google Map
 	        googleMap.setMyLocationEnabled(true);
@@ -102,8 +104,12 @@ public class CyRideMapsActivity extends FragmentActivity {
 	}
 
 	private void MoveToUser(Location location){
-		//Create pin on current location
-		//googleMap.clear();
+		Restaurant rest = (Restaurant) getIntent().getExtras().get("restaurant");
+		googleMap.addMarker(new MarkerOptions()
+	 	.position(new LatLng(rest.getLat(), rest.getLongitude()))
+	 	.snippet(rest.getName() + "\na " + rest.getGenre() + " restaurant")
+	 	.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+	    .title(rest.getName()));
 		LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
 		//Move camera to that location
 		CameraUpdate center = CameraUpdateFactory.newLatLng(currentPosition);
