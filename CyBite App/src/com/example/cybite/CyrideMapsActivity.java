@@ -91,7 +91,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}};
 
 	        if(location!=null){
-	           //PLACE THE INITIAL MARKER              
+	           //PLACE THE INITIAL MARKER
 	        	drawMarkerAndMove(location);
 	        	drawRoutes();
 	        }
@@ -119,6 +119,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 	private void drawRoutes()
 	{
 		ArrayList<String> chosenRoutes = getIntent().getStringArrayListExtra("CheckedBoxes");
+		
 		for(int i = 0; i < chosenRoutes.size(); i++)
 		{
 			ArrayList<LatLng> route = new ArrayList<LatLng>();
@@ -170,7 +171,53 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}
 			else if(chosenRoutes.get(i).equals("3 Blue"))
 			{
-				
+				route.add(new LatLng(42.020168, -93.616927));
+				route.add(new LatLng(42.02012, -93.610275));
+				route.add(new LatLng(42.017362, -93.610339));
+				route.add(new LatLng(42.01741, -93.616841));
+				route.add(new LatLng(42.020168, -93.616927));
+				route.add(new LatLng(42.019339, -93.619502));
+				route.add(new LatLng(42.019061, -93.627505));
+				route.add(new LatLng(42.016383, -93.630788));
+				route.add(new LatLng(42.016208, -93.639393));
+				route.add(new LatLng(42.022671, -93.639479));
+				route.add(new LatLng(42.02275, -93.650143));
+				route.add(new LatLng(42.024073, -93.649242));
+				route.add(new LatLng(42.025333, -93.651173));
+				route.add(new LatLng(42.025333, -93.651881));
+				route.add(new LatLng(42.028903, -93.651881));
+				route.add(new LatLng(42.028871, -93.641474));
+				route.add(new LatLng(42.030529, -93.641539));
+				route.add(new LatLng(42.030545, -93.644607));
+				route.add(new LatLng(42.038928, -93.644822));
+				route.add(new LatLng(42.041573, -93.644822));
+				route.add(new LatLng(42.041494, -93.643019));
+				route.add(new LatLng(42.040458, -93.643706));
+				route.add(new LatLng(42.039055, -93.643513));
+				route.add(new LatLng(42.038928, -93.644822));
+				route.add(new LatLng(42.039055, -93.643513));
+				route.add(new LatLng(42.040458, -93.643706));
+				route.add(new LatLng(42.041494, -93.643019));
+				route.add(new LatLng(42.040777, -93.641002));
+				route.add(new LatLng(42.043087, -93.641281));
+				route.add(new LatLng(42.043454, -93.640487));
+				route.add(new LatLng(42.044888, -93.640273));
+				route.add(new LatLng(42.045222, -93.640745));
+				route.add(new LatLng(42.045111, -93.642204));
+				route.add(new LatLng(42.045446, -93.642247));
+				route.add(new LatLng(42.045621, -93.625853));
+				route.add(new LatLng(42.047676, -93.626025));
+				route.add(new LatLng(42.048951, -93.627141));
+				route.add(new LatLng(42.048951, -93.627162));
+				route.add(new LatLng(42.05115, -93.623407));
+				route.add(new LatLng(42.05397, -93.623428));
+				route.add(new LatLng(42.053938, -93.620596));
+				route.add(new LatLng(42.053938, -93.620499));
+				route.add(new LatLng(42.049369, -93.620499));
+				route.add(new LatLng(42.049369, -93.621808));
+				route.add(new LatLng(42.05115, -93.623407));
+				options.addAll(route);
+				options.color(Color.BLUE);
 			}
 			else if(chosenRoutes.get(i).equals("4 Gray"))
 			{
@@ -186,7 +233,52 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}
 			else if(chosenRoutes.get(i).equals("6 Brown"))
 			{
-				
+				route.add(new LatLng(41.998181, -93.63626));
+				route.add(new LatLng(42.000733, -93.633599));
+				route.add(new LatLng(42.001131, -93.634222));
+				route.add(new LatLng(42.00102, -93.635852));
+				route.add(new LatLng(42.000254, -93.637033));
+				route.add(new LatLng(41.999058, -93.637161));
+				route.add(new LatLng(41.998181, -93.63626));
+				route.add(new LatLng(41.99756, -93.637354));
+				route.add(new LatLng(41.997384, -93.639393));
+				route.add(new LatLng(41.995391, -93.639393));
+				route.add(new LatLng(41.995056, -93.639393));
+				route.add(new LatLng(41.995056, -93.639758));
+				route.add(new LatLng(41.995391, -93.639393));
+				route.add(new LatLng(41.997384, -93.639393));
+				route.add(new LatLng(42.00837, -93.639393));
+				route.add(new LatLng(42.008466, -93.640809));
+				route.add(new LatLng(42.009024, -93.642397));
+				route.add(new LatLng(42.008801, -93.644607));
+				route.add(new LatLng(42.009431, -93.645605));
+				route.add(new LatLng(42.011304, -93.646667));
+				route.add(new LatLng(42.01183, -93.648663));
+				route.add(new LatLng(42.011854, -93.651656));
+				route.add(new LatLng(42.016135, -93.65171));
+				route.add(new LatLng(42.016135, -93.650057));
+				route.add(new LatLng(42.02275, -93.650143));
+				route.add(new LatLng(42.024073, -93.649242));
+				route.add(new LatLng(42.025333, -93.651173));
+				route.add(new LatLng(42.025333, -93.651881));
+				route.add(new LatLng(42.028903, -93.651881));
+				route.add(new LatLng(42.028871, -93.641474));
+				route.add(new LatLng(42.030529, -93.641539));
+				route.add(new LatLng(42.030545, -93.644607));
+				route.add(new LatLng(42.048537, -93.64495));
+				route.add(new LatLng(42.049557, -93.645444));
+				route.add(new LatLng(42.050481, -93.64495));
+				route.add(new LatLng(42.056264, -93.644907));
+				route.add(new LatLng(42.056408, -93.634222));
+				route.add(new LatLng(42.05585, -93.632655));
+				route.add(new LatLng(42.056025, -93.620725));
+				route.add(new LatLng(42.051182, -93.620596));
+				route.add(new LatLng(42.049369, -93.620499));
+				route.add(new LatLng(42.049369, -93.621808));
+				route.add(new LatLng(42.05115, -93.623407));
+				route.add(new LatLng(42.051182, -93.620596));
+				options.addAll(route);
+				options.color(Color.rgb(139,69,19));
 			}
 			else if(chosenRoutes.get(i).equals("6A Brown"))
 			{
