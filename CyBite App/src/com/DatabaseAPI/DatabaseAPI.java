@@ -64,7 +64,7 @@ public class DatabaseAPI {
 			ps.setString(10, addressFilter);
 			
 			ResultSet rs = ps.executeQuery();
-			if(rs.next())
+			while(rs.next())
 			{
 				Restaurant restaurant = new Restaurant();
 				restaurant.setCost(rs.getInt("Cost"));
@@ -79,6 +79,35 @@ public class DatabaseAPI {
 			}
 		} catch (SQLException e) {
 			System.out.println("There was an error in the getRestaurantSearchResult method. Error message: " + e.getMessage());
+		}
+		return res;
+		
+		
+	}
+	
+	public ArrayList<Restaurant> getRestaurants()
+	{
+		ArrayList<Restaurant> res = new ArrayList<Restaurant>();
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant");
+
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				Restaurant restaurant = new Restaurant();
+				restaurant.setCost(rs.getInt("Cost"));
+				restaurant.setRating(rs.getInt("Rating"));
+				restaurant.setGenre(rs.getString("Genre"));
+				restaurant.setName(rs.getString("Name"));
+				restaurant.setReview(rs.getString("Review"));
+				restaurant.setLat(rs.getFloat("Lat"));
+				restaurant.setLong(rs.getFloat("Lgt"));
+				restaurant.setAddress(rs.getString("Address"));
+				res.add(restaurant);
+			}
+		} catch (SQLException e) {
+			System.out.println("There was an error in the getRestaurants method. Error message: " + e.getMessage());
 		}
 		return res;
 		

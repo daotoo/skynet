@@ -1,5 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -12,37 +13,12 @@
         android:id="@+id/homeToNearbyMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/homeToCyrideMaps"
-        android:layout_below="@+id/homeToCyrideMaps"
-        android:layout_marginTop="39dp"
-        android:text="NearbyMap" />
-
-    <Button
-        android:id="@+id/homeToSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/homeToNearbyMap"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="48dp"
-        android:text="Settings" />
-
-    <Button
-        android:id="@+id/homeToCyrideMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="14dp"
-        android:text="CyrideMaps" />
+        android:text="View nearby restaurants" />
 
     <Button
         android:id="@+id/homeToRestaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/homeToNearbyMap"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/homeToCyrideMaps"
-        android:text="Restaurant" />
+        android:text="Search for a restaurant" />
 
-</RelativeLayout>
+</TableLayout>
