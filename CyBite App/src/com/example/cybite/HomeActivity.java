@@ -15,16 +15,6 @@ public class HomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
-		//to cyride maps
-		Button goToCyrideMaps= (Button) findViewById(R.id.homeToCyrideMaps);
-		goToCyrideMaps.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, PrepCyRideMapsActivity.class);
-				startActivity(i);
-			}
-		});
-		
 		//to nearbyMap activity
 		Button goToNearbyActivity = (Button) findViewById(R.id.homeToNearbyMap);
 		goToNearbyActivity.setOnClickListener(new View.OnClickListener() {
@@ -45,15 +35,6 @@ public class HomeActivity extends Activity {
 			}
 		});
 				
-		//to settings
-		Button goToSettings = (Button) findViewById(R.id.homeToSettings);
-		goToSettings.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
-				startActivity(i);
-			}
-		});
 	}
 
 	@Override

@@ -36,13 +36,15 @@ public class CyRideMapsActivity extends FragmentActivity {
 	    int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
 
 	    // Showing status
-	    if(status!=ConnectionResult.SUCCESS){ // Google Play Services are not available
+	    if(status!=ConnectionResult.SUCCESS)
+	    { // Google Play Services are not available
 
 	        int requestCode = 10;
 	        Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, this, requestCode);
 	        dialog.show();
 
-	    }else { // Google Play Services are available
+	    }
+	    else { // Google Play Services are available
 
 	        // Getting reference to the SupportMapFragment of activity_main.xml
 	        SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -68,7 +70,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 	        LocationListener locationListener = new LocationListener() {
 	          public void onLocationChanged(Location location) {
 	          // redraw the marker when get location update.
-	        	  drawMarkerAndMove(location);
+	        	  MoveToUser(location);
 	        }
 
 			@Override
@@ -92,22 +94,17 @@ public class CyRideMapsActivity extends FragmentActivity {
 
 	        if(location!=null){
 	           //PLACE THE INITIAL MARKER
-	        	drawMarkerAndMove(location);
+	        	MoveToUser(location);
 	        	drawRoutes();
 	        }
 	        locationManager.requestLocationUpdates(provider, 20000, 0, locationListener);        
 	    }
 	}
 
-	private void drawMarkerAndMove(Location location){
+	private void MoveToUser(Location location){
 		//Create pin on current location
 		//googleMap.clear();
 		LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-		googleMap.addMarker(new MarkerOptions()
-		 	.position(currentPosition)
-		 	.snippet("Lat:" + location.getLatitude() + "Lng:"+ location.getLongitude())
-		 	.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-		    .title("ME"));
 		//Move camera to that location
 		CameraUpdate center = CameraUpdateFactory.newLatLng(currentPosition);
 		googleMap.moveCamera(center);
@@ -316,7 +313,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 			{
 				
 			}
-			Polyline line = googleMap.addPolyline(options);
+			googleMap.addPolyline(options);
 		}	
 	}
 	
