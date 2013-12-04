@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class RestaurantInfoActivity extends Activity {
@@ -45,16 +46,17 @@ public class RestaurantInfoActivity extends Activity {
 		TextView name = (TextView) findViewById(R.id.restaurantName);
 		TextView genre = (TextView) findViewById(R.id.restaurantGenre);
 		TextView cost = (TextView) findViewById(R.id.restaurantCost);
-		TextView rating = (TextView) findViewById(R.id.restaurantRating);
 		TextView review = (TextView) findViewById(R.id.restaurantReview);
 		TextView address = (TextView) findViewById(R.id.restaurantAddress);
+		RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
 		
-		name.setText(r.getName());
-		genre.setText(r.getGenre());
-		cost.setText(strCost);
-		rating.setText(strRat);
-		review.setText(r.getReview());
-		address.setText(r.getAddress());
+		
+		name.setText("Name: " + r.getName());
+		genre.setText("Genre: " + r.getGenre());
+		cost.setText("Cost 1-3 (3 Being most expensive): " + strCost);
+		review.setText("Review/Comments: " + r.getReview());
+		address.setText("Address: " + r.getAddress());
+		ratingBar.setRating(r.getRating());
 		
 	}
 
