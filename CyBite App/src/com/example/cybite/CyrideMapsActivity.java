@@ -11,12 +11,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -24,7 +21,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
 
 public class CyRideMapsActivity extends FragmentActivity {
 
@@ -388,18 +384,15 @@ public class CyRideMapsActivity extends FragmentActivity {
 				PolylineOptions option = null;
 				switch(i) {
 				case 0:
-					//dist = findShortestDistance(locationRest, route1Red) + findShortestDistance(locationYou, route1Red);
-					totalDist = findTotalDistance(locationRest, locationYou, route1Red);
+					totalDist = findTotalDistance(locationRest, locationYou, route1Red, 0);
 					option = options1Red;
 					break;
 				case 4:
-					//dist = findShortestDistance(locationRest, route3Blue) + findShortestDistance(locationYou, route3Blue);
-					totalDist = findTotalDistance(locationRest, locationYou, route3Blue);
+					totalDist = findTotalDistance(locationRest, locationYou, route3Blue, 0);
 					option = options3Blue;
 					break;
 				case 8:
-					//dist = findShortestDistance(locationRest, route6Brown) + findShortestDistance(locationYou, route6Brown);
-					totalDist = findTotalDistance(locationRest, locationYou, route6Brown);
+					totalDist = findTotalDistance(locationRest, locationYou, route6Brown, 0);
 					option = options6Brown;
 					break;
 				default:
@@ -423,17 +416,6 @@ public class CyRideMapsActivity extends FragmentActivity {
 		
 	}
 	
-	
-	
-	/*private double findShortestDistance(LatLng tap, ArrayList<LatLng> vertices) {
-	    double shortestDist = Double.MAX_VALUE;
-	    for(int i = 0; i < vertices.size()-1; i++) {
-	    	shortestDist = rayCastIntersect(tap, vertices.get(i), vertices.get(i+1), shortestDist);
-	    }
-
-	    return shortestDist;
-	}*/
-	
 	private class DistancePoint {
 		public LatLng intersectPoint;
 		public double distance;
@@ -443,7 +425,8 @@ public class CyRideMapsActivity extends FragmentActivity {
 		}
 	}
 	
-	private double findTotalDistance(LatLng rest, LatLng you, ArrayList<LatLng> vertices) {
+	// Direction of Route (int direction): -1 = backward | 1 = forward | 0 = both
+	private double findTotalDistance(LatLng rest, LatLng you, ArrayList<LatLng> vertices, int direction) {
 		DistancePoint shortestDistRest = new DistancePoint(Double.MAX_VALUE, null);
 		DistancePoint shortestDistYou = new DistancePoint(Double.MAX_VALUE, null);
 		int shortestI = 0, shortestJ = 0;
@@ -466,30 +449,26 @@ public class CyRideMapsActivity extends FragmentActivity {
 	    	}
 	    }
 	    double totalDist = 0;
-	    if(shortestI <= shortestJ) {
-	    	totalDist += Distance(shortestDistRest.intersectPoint, vertices.get(shortestI+1));
-	    	totalDist += Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ));
+	    if(shortestI <= shortestJ && direction != 1) {
+	    	totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI+1));
+	    	totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ));
 	    	while(shortestI < shortestJ) {
 	    		totalDist += Distance(vertices.get(shortestI), vertices.get(shortestI+1));
 	    		shortestI++;
 	    	}
-	    } else {
-	    	totalDist += Distance(shortestDistRest.intersectPoint, vertices.get(shortestI));
-	    	totalDist += Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ+1));
+	    } else if(shortestJ <= shortestI && direction != -1){
+	    	totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI));
+	    	totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ+1));
 	    	while(shortestJ < shortestI) {
 	    		totalDist += Distance(vertices.get(shortestJ), vertices.get(shortestJ+1));
 	    		shortestJ++;
 	    	}
+	    } else {
+	    	totalDist = 10*Distance(you, rest);
 	    }
 	    
 		return totalDist;
 	}
-
-	/*private double rayCastIntersect(LatLng tap, LatLng vertA, LatLng vertB, double shortestDist) {
-	    
-	    double z = LineToPointDistance2D(vertA, vertB, tap, true);
-	    return (shortestDist < z) ? shortestDist : z;
-	}*/
 	
 	//Compute the dot product AB . AC
 	private double DotProduct(LatLng pointA, LatLng pointB, LatLng pointC)
@@ -525,24 +504,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 	}
 
 	//Compute the distance from AB to C
-	//if isSegment is true, AB is a segment, not a line.
-/*	private double LineToPointDistance2D(LatLng pointA, LatLng pointB, LatLng pointC, 
-	    boolean isSegment)
-	{
-	    double dist = CrossProduct(pointA, pointB, pointC) / Distance(pointA, pointB);
-	    if (isSegment)
-	    {
-	        double dot1 = DotProduct(pointA, pointB, pointC);
-	        if (dot1 > 0) 
-	            return Distance(pointB, pointC);
-
-	        double dot2 = DotProduct(pointB, pointA, pointC);
-	        if (dot2 > 0) 
-	            return Distance(pointA, pointC);
-	    }
-	    return Math.abs(dist);
-	}*/
-	
+	//if isSegment is true, AB is a segment, not a line.	
 	private DistancePoint LineToPointDistance2D(LatLng pointA, LatLng pointB, LatLng pointC, 
 		    boolean isSegment)
 		{
