@@ -141,14 +141,25 @@
                 android:layout_column="2"
                 android:text="24 Silver" />
         </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <CheckBox
+        		android:id="@+id/checkBox19"
+        		android:layout_width="wrap_content"
+       		 	android:layout_height="wrap_content"
+        		android:text="View All Routes" />
+    		<CheckBox
+        		android:id="@+id/checkBox20"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="View Closest Route" />
+        </TableRow>
     </TableLayout>
     
-    <CheckBox
-        android:id="@+id/checkBox19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="View all Routes" />
+    
 
      <TextView
         android:id="@+id/textView1"
