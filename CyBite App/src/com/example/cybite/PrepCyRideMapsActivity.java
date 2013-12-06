@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.DatabaseAPI.Restaurant;
 
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 public class PrepCyRideMapsActivity extends Activity {
 int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5, R.id.checkBox6,
@@ -40,13 +42,18 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
 			@Override
 			public void onClick(View v) {
 				ArrayList<String> checkedBoxes = new ArrayList<String>();
+				if(((CheckBox) findViewById(R.id.checkBox20)).isChecked()) {
+					checkedBoxes.add(((CheckBox)findViewById(R.id.checkBox20)).getText().toString());
+				}
+				else {
 				for(int i = 0; i < checkboxes.length; i++)
 				{
 					CheckBox box = (CheckBox) findViewById(checkboxes[i]);
-					if(box.isChecked() || ((CheckBox) findViewById(R.id.checkBox19)).isChecked())
+					if((box.isChecked() && box.isEnabled()) || ((CheckBox) findViewById(R.id.checkBox19)).isChecked())
 					{
 						checkedBoxes.add(box.getText().toString());
 					}				
+				}
 				}
 				 Intent intent = new Intent(PrepCyRideMapsActivity.this, CyRideMapsActivity.class);
 				 intent.putExtra("restaurant", (Restaurant) getIntent().getExtras().get("restaurant"));
@@ -54,5 +61,47 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
 				 PrepCyRideMapsActivity.this.startActivity(intent);
 			}
 		});
+        
+        ((CheckBox) findViewById(R.id.checkBox19)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    		
+    		@Override
+    		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    			for(int i = 0; i < checkboxes.length; i++)
+    			{
+    				if(isChecked) {
+    					((CheckBox) findViewById(checkboxes[i])).setEnabled(false);
+    				} else {
+    					((CheckBox) findViewById(checkboxes[i])).setEnabled(true);
+    				}
+    			}
+    			if(isChecked) {
+    				((CheckBox) findViewById(R.id.checkBox20)).setEnabled(false);
+    			} else {
+    				((CheckBox) findViewById(R.id.checkBox20)).setEnabled(true);
+    			}
+    			
+    		}
+    	});
+        
+        ((CheckBox) findViewById(R.id.checkBox20)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    		
+    		@Override
+    		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    			for(int i = 0; i < checkboxes.length; i++)
+    			{
+    				if(isChecked) {
+    					((CheckBox) findViewById(checkboxes[i])).setEnabled(false);
+    				} else {
+    					((CheckBox) findViewById(checkboxes[i])).setEnabled(true);
+    				}
+    			}
+    			if(isChecked) {
+    				((CheckBox) findViewById(R.id.checkBox19)).setEnabled(false);
+    			} else {
+    				((CheckBox) findViewById(R.id.checkBox19)).setEnabled(true);
+    			}
+    			
+    		}
+    	});
     }
 }

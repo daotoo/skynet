@@ -162,15 +162,25 @@
                 android:text="24 Silver"
                 android:textColor="@color/text" />
         </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <CheckBox
+        		android:id="@+id/checkBox19"
+        		android:layout_width="wrap_content"
+       		 	android:layout_height="wrap_content"
+        		android:text="View All Routes"
+        		android:textColor="@color/text" />
+    		<CheckBox
+        		android:id="@+id/checkBox20"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="View Closest Route"
+        		android:textColor="@color/text" />
+        </TableRow>
     </TableLayout>
-    
-    <CheckBox
-        android:id="@+id/checkBox19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="View all Routes"
-        android:textColor="@color/text" />
 
      <TextView
         android:id="@+id/textView1"
