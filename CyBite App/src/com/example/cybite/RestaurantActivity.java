@@ -30,6 +30,7 @@ public class RestaurantActivity extends Activity{
 	ArrayList<String> ratingList;
 	ArrayList<Restaurant> searchResultsList;
 	ArrayList<String> listItems;
+	Restaurant r;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,9 @@ public class RestaurantActivity extends Activity{
 		initLists();
 		createAndSetAdapters();
 		
-		//name search
+		//name search will query our database for restaurants with the given
+		//search string in their name and takes users to restaurant results
+		//which will display all appropriate restaurants based off search
 		Button nameSearchBtn = (Button) findViewById(R.id.nameSearchButton);
         nameSearchBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -80,6 +83,9 @@ public class RestaurantActivity extends Activity{
 			}
         });
         
+        //filter search will allow users to search for a restaurant based off cost, genre, and rating
+        //and takes user to restaurant results page that displays list of all restaurants matching
+        //the given filter values
         Button filterSearchButton = (Button) findViewById(R.id.filterSearchButton);
         filterSearchButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -160,6 +166,46 @@ public class RestaurantActivity extends Activity{
 		        
 			}
         });
+        
+        //random button will query our database and take user to restaurant info page
+        Button randomButton = (Button) findViewById(R.id.randomButton);
+        randomButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ExecutorService pool = Executors.newFixedThreadPool(10);
+				Callable task = new Callable(){
+					@Override
+					public Object call() throws Exception {
+						return getSearchResults();
+					}
+					
+					/**
+					 * Gets search results from the Database based off of searchText
+					 * @param searchText the entered search term
+					 * @return arrayList of Food items
+					 */
+					private Restaurant getSearchResults(){
+							DatabaseAPI d = new DatabaseAPI();
+							Restaurant r = d.getRandomRestaurant();
+							return r;
+					}
+					
+		        };
+		        Future<Restaurant> future = pool.submit(task);
+		        try {
+					r = future.get();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					e.printStackTrace();
+				}
+		        
+				Intent i = new Intent(RestaurantActivity.this, RestaurantInfoActivity.class);
+				i.putExtra("restaurant", r);
+				startActivity(i);
+		        
+			}
+        });
 		
 	}
 	
@@ -199,7 +245,7 @@ public class RestaurantActivity extends Activity{
 	 */
 	private void initLists(){
 		listItems = new ArrayList<String>();
-
+		r = new Restaurant();
 		costList = new ArrayList<String>(); 
 		genreList = new ArrayList<String>(); 
 		ratingList = new ArrayList<String>();

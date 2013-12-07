@@ -85,6 +85,27 @@ public class DatabaseAPI {
 		
 	}
 	
+	public Restaurant getRandomRestaurant(){
+		Restaurant restaurant = new Restaurant();
+		try{
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant ORDER BY RAND() LIMIT 0,1");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				restaurant.setCost(rs.getInt("Cost"));
+				restaurant.setRating(rs.getInt("Rating"));
+				restaurant.setGenre(rs.getString("Genre"));
+				restaurant.setName(rs.getString("Name"));
+				restaurant.setReview(rs.getString("Review"));
+				restaurant.setLat(rs.getFloat("Lat"));
+				restaurant.setLong(rs.getFloat("Lgt"));
+				restaurant.setAddress(rs.getString("Address"));
+			}
+		} catch (SQLException e){
+			System.out.println("There was an error in the getRandomRestaurant method. Error message: " + e.getMessage());
+		}
+		return restaurant;
+	}
+	
 	public ArrayList<Restaurant> getRestaurants()
 	{
 		ArrayList<Restaurant> res = new ArrayList<Restaurant>();
