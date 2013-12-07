@@ -67,8 +67,9 @@ public class DatabaseAPI {
 			while(rs.next())
 			{
 				Restaurant restaurant = new Restaurant();
+				restaurant.setID(rs.getString("ID"));
 				restaurant.setCost(rs.getInt("Cost"));
-				restaurant.setRating(rs.getInt("Rating"));
+				restaurant.setRating(rs.getFloat("Rating"));
 				restaurant.setGenre(rs.getString("Genre"));
 				restaurant.setName(rs.getString("Name"));
 				restaurant.setReview(rs.getString("Review"));
@@ -82,6 +83,58 @@ public class DatabaseAPI {
 		}
 		return res;
 		
+		
+	}
+	
+	public Restaurant getRandomRestaurant(){
+		Restaurant restaurant = new Restaurant();
+		try{
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant ORDER BY RAND() LIMIT 0,1");
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				restaurant.setID(rs.getString("ID"));
+				restaurant.setCost(rs.getInt("Cost"));
+				restaurant.setRating(rs.getFloat("Rating"));
+				restaurant.setGenre(rs.getString("Genre"));
+				restaurant.setName(rs.getString("Name"));
+				restaurant.setReview(rs.getString("Review"));
+				restaurant.setLat(rs.getFloat("Lat"));
+				restaurant.setLong(rs.getFloat("Lgt"));
+				restaurant.setAddress(rs.getString("Address"));
+			}
+		} catch (SQLException e){
+			System.out.println("There was an error in the getRandomRestaurant method. Error message: " + e.getMessage());
+		}
+		return restaurant;
+	}
+	
+	public boolean addRating(String id, int newRating)
+	{
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Restaurant WHERE ID = ?");
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				//get current rating and number of ratings
+				int numRatings = rs.getInt("NumRatings");
+				float rating = rs.getFloat("Rating");
+				rating = (rating*numRatings + newRating)/ ++numRatings;
+				//update with new values
+				ps = connection.prepareStatement("UPDATE Restaurant SET Rating=?, NumRatings=? WHERE ID = ?");
+				ps.setFloat(1, rating);
+				ps.setInt(2, numRatings);
+				ps.setString(3, id);
+				ps.executeUpdate();
+				
+			} else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("There was an error in the addRating method and the rating was unsuccessful. Error message: " + e.getMessage());
+			return false;
+		}
+		return true;
 		
 	}
 	
