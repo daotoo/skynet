@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="15sp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/text" />
         </TableRow>
 
@@ -110,17 +110,59 @@
         android:id="@+id/ratingBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:clickable="false"
         android:isIndicator="true"
         android:max="5"
         android:numStars="5"
-        android:stepSize="1" />
+        android:stepSize=".1" />
 
     <Button
         android:id="@+id/restInfoToMaps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Take me there!"
         android:textColor="@color/button_text" />
+
+    <Button
+        android:id="@+id/rateMeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Rate Me!"
+        android:textColor="@color/button_text"
+        android:textColorHint="@color/button_text" />
+
+    <RatingBar
+        android:id="@+id/rateMeBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:max="5"
+        android:numStars="5"
+        android:stepSize="1"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/submitRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Submit Rating"
+        android:textColor="@color/button_text"
+        android:textColorHint="@color/button_text"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/thankYouText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Thank you for rating!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/button_text"
+        android:textColorHint="@color/button_text"
+        android:visibility="gone" />
 
 </LinearLayout>
