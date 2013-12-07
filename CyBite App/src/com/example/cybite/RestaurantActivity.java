@@ -49,6 +49,10 @@ public class RestaurantActivity extends Activity{
 			public void onClick(View v) {
 				ExecutorService pool = Executors.newFixedThreadPool(3);
 				final String st = getNameSearchFieldText();
+				if (st == "")
+				{
+					return;
+				}
 		        Callable task = new Callable(){
 					@Override
 					public Object call() throws Exception {
@@ -132,7 +136,13 @@ public class RestaurantActivity extends Activity{
 				final int finalRatingFilter = ratingFilter;
 				
 				//genre filter
-				final String finalGenreFilter = (String) genreSpinner.getSelectedItem();
+				String genreFilter = (String) genreSpinner.getSelectedItem();
+				if (genreFilter.contains("Any"))
+				{
+					genreFilter = "";
+				}			
+				final String finalGenreFilter = genreFilter;
+
 		        
 				
 				Callable task = new Callable(){
@@ -270,7 +280,7 @@ public class RestaurantActivity extends Activity{
 		ratingList.add("2 or above");
 		ratingList.add("3 or above");
 		ratingList.add("4 or above");
-		ratingList.add("5 or above");
+		ratingList.add("5");
 	}
 	
 	/**
