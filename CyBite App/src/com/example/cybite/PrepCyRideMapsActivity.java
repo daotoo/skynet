@@ -5,17 +5,18 @@ import java.util.ArrayList;
 
 import com.DatabaseAPI.Restaurant;
 
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class PrepCyRideMapsActivity extends Activity {
 int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBox4, R.id.checkBox5, R.id.checkBox6,
@@ -26,6 +27,7 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prep_cyridemaps);
+        initializeCyRideSpinner();
         
         Button viewTimesButton = (Button) findViewById(R.id.ViewTimes);
         viewTimesButton.setOnClickListener(new OnClickListener() {
@@ -58,6 +60,7 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
 				 Intent intent = new Intent(PrepCyRideMapsActivity.this, CyRideMapsActivity.class);
 				 intent.putExtra("restaurant", (Restaurant) getIntent().getExtras().get("restaurant"));
 				 intent.putExtra("CheckedBoxes", checkedBoxes);
+				 intent.putExtra("routeSpinner", (String) ((Spinner)findViewById(R.id.routeSpinner)).getSelectedItem());
 				 PrepCyRideMapsActivity.this.startActivity(intent);
 			}
 		});
@@ -76,8 +79,12 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
     			}
     			if(isChecked) {
     				((CheckBox) findViewById(R.id.checkBox20)).setEnabled(false);
+    				((Spinner) findViewById(R.id.routeSpinner)).setEnabled(false);
+    				((TextView) findViewById(R.id.textView7)).setEnabled(false);
     			} else {
     				((CheckBox) findViewById(R.id.checkBox20)).setEnabled(true);
+    				((Spinner) findViewById(R.id.routeSpinner)).setEnabled(true);
+    				((TextView) findViewById(R.id.textView7)).setEnabled(true);
     			}
     			
     		}
@@ -103,5 +110,16 @@ int[] checkboxes = {R.id.checkBox1, R.id.checkBox2, R.id.checkBox3, R.id.checkBo
     			
     		}
     	});
+    }
+    
+    public void initializeCyRideSpinner() {
+    	Spinner routeSpinner = (Spinner) findViewById(R.id.routeSpinner);
+    	ArrayList<String> routeList = new ArrayList<String>();
+    	for(int i = 1; i <= 5; i++) {
+    		routeList.add(String.valueOf(i));
+    	}
+    	ArrayAdapter<String> routeSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, routeList);
+    	routeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		routeSpinner.setAdapter(routeSpinnerAdapter);
     }
 }

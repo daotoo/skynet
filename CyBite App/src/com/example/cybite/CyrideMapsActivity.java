@@ -1,5 +1,12 @@
 package com.example.cybite;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 import com.DatabaseAPI.Restaurant;
 import com.google.android.gms.common.ConnectionResult;
@@ -13,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.location.Criteria;
@@ -118,20 +126,41 @@ public class CyRideMapsActivity extends FragmentActivity {
 		googleMap.animateCamera(zoom);
 		}
 	
-	ArrayList<LatLng> route1Red = new ArrayList<LatLng>();
 	PolylineOptions options1Red = new PolylineOptions();
-	
-	ArrayList<LatLng> route3Blue = new ArrayList<LatLng>();
+	PolylineOptions options2Green = new PolylineOptions();
 	PolylineOptions options3Blue = new PolylineOptions();
-	
-	ArrayList<LatLng> route6Brown = new ArrayList<LatLng>();
+	PolylineOptions options4Gray = new PolylineOptions();
+	PolylineOptions options4AGray = new PolylineOptions();
+	PolylineOptions options5Yellow = new PolylineOptions();
 	PolylineOptions options6Brown = new PolylineOptions();
+	PolylineOptions options7Purple = new PolylineOptions();
+	PolylineOptions options8Aqua = new PolylineOptions();
+	PolylineOptions options10Pink = new PolylineOptions();
+	PolylineOptions options21Cardinal = new PolylineOptions();
+	PolylineOptions options22Gold = new PolylineOptions();
+	PolylineOptions options23Orange = new PolylineOptions();
+	ArrayList<PolylineOptions> options24Silver = new ArrayList<PolylineOptions>();
+	
+	public ArrayList<LatLng> findCoordinates(BufferedReader s) throws IOException {
+		ArrayList<LatLng> routeCoord = new ArrayList<LatLng>();
+		String coord = s.readLine();
+		if(coord != null) {
+			while(!coord.equals("")) {
+				String[] latlng = coord.split(", ");
+				routeCoord.add(new LatLng(Double.valueOf(latlng[0]), Double.valueOf(latlng[1])));
+				//System.out.println("lat = "+ latlng[0] + "lng = "+ latlng[1]);
+				coord = s.readLine();
+				if(coord == null) {
+					coord = "";
+				}
+			}
+		}
+		return routeCoord;
+	}
 	
 	private void initializeRoutes() {
 		/* Initialize each route */
-		
-		// 1 Red
-		route1Red.add(new LatLng(42.011962, -93.671343));
+		/*route1Red.add(new LatLng(42.011962, -93.671343));
 		route1Red.add(new LatLng(42.011994, -93.678682));
 		route1Red.add(new LatLng(42.012201, -93.681707));
 		route1Red.add(new LatLng(42.014561, -93.680956));
@@ -157,9 +186,107 @@ public class CyRideMapsActivity extends FragmentActivity {
 		route1Red.add(new LatLng(42.051172, -93.621776));	
 		route1Red.add(new LatLng(42.049344, -93.621846));
 		route1Red.add(new LatLng(42.049368, -93.620596));
-		route1Red.add(new LatLng(42.051192, -93.620548));
-		options1Red.addAll(route1Red);
-		options1Red.color(Color.RED);
+		route1Red.add(new LatLng(42.051192, -93.620548));*/
+		//options1Red.addAll(route1Red);
+		//options1Red.color(Color.RED);
+		
+		try {
+			BufferedReader s=new BufferedReader(new 
+		            InputStreamReader(getAssets().open("cyride_routes.txt")));
+			String route = s.readLine();
+			while(route != null)
+			{
+				
+				if(route.equals("1 Red"))
+				{
+					options1Red.addAll(findCoordinates(s));
+					options1Red.color(Color.RED);
+				}
+				else if(route.equals("2 Green"))
+				{
+					options2Green.addAll(findCoordinates(s));
+					options2Green.color(Color.GREEN);
+				}
+				else if(route.equals("3 Blue"))
+				{
+					options3Blue.addAll(findCoordinates(s));
+					options3Blue.color(Color.BLUE);
+				}
+				else if(route.equals("4 Gray"))
+				{
+					options4Gray.addAll(findCoordinates(s));
+					options4Gray.color(Color.GRAY);
+				}
+				else if(route.equals("4A Gray"))
+				{
+					options4AGray.addAll(findCoordinates(s));
+					options4AGray.color(Color.GRAY);
+				}
+				else if(route.equals("5 Yellow"))
+				{
+					options5Yellow.addAll(findCoordinates(s));
+					options5Yellow.color(Color.YELLOW);
+				}
+				else if(route.equals("6 Brown"))
+				{
+					options6Brown.addAll(findCoordinates(s));
+					options6Brown.color(Color.rgb(139,69,19));
+				}
+				else if(route.equals("7 Purple"))
+				{
+					options7Purple.addAll(findCoordinates(s));
+					options7Purple.color(Color.rgb(160,32,240));
+				}
+				else if(route.equals("8 Aqua"))
+				{
+					options8Aqua.addAll(findCoordinates(s));
+					options8Aqua.color(Color.rgb(102,205,170));
+				}
+				else if(route.equals("10 Pink"))
+				{
+					options10Pink.addAll(findCoordinates(s));
+					options10Pink.color(Color.rgb(255,20,147));
+				}
+				else if(route.equals("21 Cardinal"))
+				{
+					options21Cardinal.addAll(findCoordinates(s));
+					options21Cardinal.color(Color.rgb(204,0,0));
+				}
+				else if(route.equals("22 Gold"))
+				{
+					options22Gold.addAll(findCoordinates(s));
+					options22Gold.color(Color.rgb(226,219,3));
+				}
+				else if(route.equals("23 Orange"))
+				{
+					options23Orange.addAll(findCoordinates(s));
+					options23Orange.color(Color.rgb(255,128,0));
+				}
+				else if(route.equals("24 Silver"))
+				{
+					options24Silver.add(new PolylineOptions()
+					.add(new LatLng(42.014291, -93.63273), new LatLng(42.013143,-93.632923), new LatLng(42.012043, -93.634071))
+					.color(Color.rgb(192, 192, 192)));
+					
+					options24Silver.add(new PolylineOptions()
+					.add(new LatLng(42.014761, -93.651688), new LatLng(42.012952,-93.651667))
+					.color(Color.rgb(192, 192, 192)));
+					
+					options24Silver.add(new PolylineOptions()
+					.add(new LatLng(42.024948, -93.650422), new LatLng(42.024027,-93.649296), new LatLng(42.023521, -93.649789))
+					.color(Color.rgb(192, 192, 192)));
+					
+					options24Silver.add(new PolylineOptions()
+					.add(new LatLng(42.024525, -93.639114), new LatLng(42.024533,-93.641249), new LatLng(42.023449, -93.641024), new LatLng(42.023402, -93.639393), new LatLng(42.024525, -93.639114))
+					.color(Color.rgb(192, 192, 192)));
+				}
+				route = s.readLine();
+			}
+			s.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// 1A Red
 		
@@ -168,7 +295,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 		// 2 Green
 		
 		// 3 Blue
-		route3Blue.add(new LatLng(42.020168, -93.616927));
+		/*route3Blue.add(new LatLng(42.020168, -93.616927));
 		route3Blue.add(new LatLng(42.02012, -93.610275));
 		route3Blue.add(new LatLng(42.017362, -93.610339));
 		route3Blue.add(new LatLng(42.01741, -93.616841));
@@ -214,7 +341,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 		route3Blue.add(new LatLng(42.049369, -93.621808));
 		route3Blue.add(new LatLng(42.05115, -93.623407));
 		options3Blue.addAll(route3Blue);
-		options3Blue.color(Color.BLUE);
+		options3Blue.color(Color.BLUE);*/
 			
 		// 4 Gray
 
@@ -223,7 +350,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 		// 5 Yellow
 		
 		// 6 Brown
-		route6Brown.add(new LatLng(41.998181, -93.63626));
+		/*route6Brown.add(new LatLng(41.998181, -93.63626));
 		route6Brown.add(new LatLng(42.000733, -93.633599));
 		route6Brown.add(new LatLng(42.001131, -93.634222));
 		route6Brown.add(new LatLng(42.00102, -93.635852));
@@ -268,7 +395,7 @@ public class CyRideMapsActivity extends FragmentActivity {
 		route6Brown.add(new LatLng(42.05115, -93.623407));
 		route6Brown.add(new LatLng(42.051182, -93.620596));
 		options6Brown.addAll(route6Brown);
-		options6Brown.color(Color.rgb(139,69,19));
+		options6Brown.color(Color.rgb(139,69,19));*/
 		
 		// 6A Brown
 
@@ -302,15 +429,15 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}
 			else if(chosenRoutes.get(i).equals("1A Red"))
 			{
-				
+				googleMap.addPolyline(options1Red);
 			}
 			else if(chosenRoutes.get(i).equals("1B Red"))
 			{
-				
+				googleMap.addPolyline(options1Red);
 			}
 			else if(chosenRoutes.get(i).equals("2 Green"))
 			{
-				
+				googleMap.addPolyline(options2Green);
 			}
 			else if(chosenRoutes.get(i).equals("3 Blue"))
 			{
@@ -318,15 +445,15 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}
 			else if(chosenRoutes.get(i).equals("4 Gray"))
 			{
-				
+				googleMap.addPolyline(options4Gray);
 			}
 			else if(chosenRoutes.get(i).equals("4A Gray"))
 			{
-				
+				googleMap.addPolyline(options4AGray);	
 			}
 			else if(chosenRoutes.get(i).equals("5 Yellow"))
 			{
-				
+				googleMap.addPolyline(options5Yellow);
 			}
 			else if(chosenRoutes.get(i).equals("6 Brown"))
 			{
@@ -334,41 +461,43 @@ public class CyRideMapsActivity extends FragmentActivity {
 			}
 			else if(chosenRoutes.get(i).equals("6A Brown"))
 			{
-				
+				googleMap.addPolyline(options6Brown);
 			}
 			else if(chosenRoutes.get(i).equals("6B Brown"))
 			{
-				
+				googleMap.addPolyline(options6Brown);
 			}
 			else if(chosenRoutes.get(i).equals("7 Purple"))
 			{
-				
+				googleMap.addPolyline(options7Purple);
 			}
 			else if(chosenRoutes.get(i).equals("8 Aqua"))
 			{
-				
+				googleMap.addPolyline(options8Aqua);
 			}
 			else if(chosenRoutes.get(i).equals("10 Pink"))
 			{
-				
+				googleMap.addPolyline(options10Pink);
 			}
 			else if(chosenRoutes.get(i).equals("21 Cardinal"))
 			{
-				
+				googleMap.addPolyline(options21Cardinal);
 			}
 			else if(chosenRoutes.get(i).equals("22 Gold"))
 			{
-				
+				googleMap.addPolyline(options22Gold);
 			}
 			else if(chosenRoutes.get(i).equals("23 Orange"))
 			{
-				
+				googleMap.addPolyline(options23Orange);
 			}
 			else if(chosenRoutes.get(i).equals("24 Silver"))
 			{
-				
+				for(int j = 0; j < options24Silver.size(); j++) {
+					googleMap.addPolyline(options24Silver.get(j));
+				}
 			}
-			else if(chosenRoutes.get(i).equals("View Closest Route")) {
+			else if(chosenRoutes.get(i).equals("View Optimal Route(s):")) {
 				closestRoute = true;
 			}
 		}
@@ -383,17 +512,67 @@ public class CyRideMapsActivity extends FragmentActivity {
 				double totalDist = Double.MAX_VALUE;
 				PolylineOptions option = null;
 				switch(i) {
-				case 0:
-					totalDist = findTotalDistance(locationRest, locationYou, route1Red, 0);
+				case 0: // 1 Red
+					totalDist = findTotalDistance(locationRest, locationYou, options1Red.getPoints(), 0);
 					option = options1Red;
 					break;
-				case 4:
-					totalDist = findTotalDistance(locationRest, locationYou, route3Blue, 0);
+				case 1: // 1A Red
+					break;
+				case 2: // 1B Red
+					break;
+				case 3: // 2 Green
+					totalDist = findTotalDistance(locationRest, locationYou, options2Green.getPoints(), 0);
+					option = options2Green;
+					break;
+				case 4: // 3 Blue
+					totalDist = findTotalDistance(locationRest, locationYou, options3Blue.getPoints(), 0);
 					option = options3Blue;
 					break;
-				case 8:
-					totalDist = findTotalDistance(locationRest, locationYou, route6Brown, 0);
+				case 5: // 4 Gray
+					totalDist = findTotalDistance(locationRest, locationYou, options4Gray.getPoints(), 0);
+					option = options4Gray;
+					break;
+				case 6: // 4A Gray
+					totalDist = findTotalDistance(locationRest, locationYou, options4AGray.getPoints(), 0);
+					option = options4AGray;
+					break;
+				case 7: // 5 Yellow
+					totalDist = findTotalDistance(locationRest, locationYou, options5Yellow.getPoints(), 0);
+					option = options5Yellow;
+					break;
+				case 8: // 6 Brown
+					totalDist = findTotalDistance(locationRest, locationYou, options6Brown.getPoints(), 0);
 					option = options6Brown;
+					break;
+				case 9: // 6A Brown
+					break;
+				case 10: // 6B Brown
+					break;
+				case 11: // 7 Purple
+					totalDist = findTotalDistance(locationRest, locationYou, options7Purple.getPoints(), 0);
+					option = options7Purple;
+					break;
+				case 12: // 8 Aqua
+					totalDist = findTotalDistance(locationRest, locationYou, options8Aqua.getPoints(), 0);
+					option = options8Aqua;
+					break;
+				case 13: // 10 Pink
+					totalDist = findTotalDistance(locationRest, locationYou, options10Pink.getPoints(), 0);
+					option = options10Pink;
+					break;
+				case 14: // 21 Cardinal
+					totalDist = findTotalDistance(locationRest, locationYou, options21Cardinal.getPoints(), 0);
+					option = options21Cardinal;
+					break;
+				case 15: // 22 Gold
+					totalDist = findTotalDistance(locationRest, locationYou, options22Gold.getPoints(), 0);
+					option = options22Gold;
+					break;
+				case 16: // 23 Orange
+					totalDist = findTotalDistance(locationRest, locationYou, options23Orange.getPoints(), 0);
+					option = options23Orange;
+					break;
+				case 17: // 24 Silver
 					break;
 				default:
 					break;
@@ -406,7 +585,8 @@ public class CyRideMapsActivity extends FragmentActivity {
 				options.add(j, option);
 			}
 			int j = 0;
-			while(j < 1 && j < options.size()) {
+			int numRoutes = Integer.parseInt((String) getIntent().getExtras().get("routeSpinner"));
+			while(j < numRoutes && j < options.size() && shortestDist.get(j) != Double.MAX_VALUE) {
 				googleMap.addPolyline(options.get(j));
 				j++;
 			}
@@ -426,48 +606,51 @@ public class CyRideMapsActivity extends FragmentActivity {
 	}
 	
 	// Direction of Route (int direction): -1 = backward | 1 = forward | 0 = both
-	private double findTotalDistance(LatLng rest, LatLng you, ArrayList<LatLng> vertices, int direction) {
+	private double findTotalDistance(LatLng rest, LatLng you, List<LatLng> vertices, int direction) {
 		DistancePoint shortestDistRest = new DistancePoint(Double.MAX_VALUE, null);
 		DistancePoint shortestDistYou = new DistancePoint(Double.MAX_VALUE, null);
 		int shortestI = 0, shortestJ = 0;
-		
-	    for(int i = 0; i < vertices.size()-1; i++) {
-	    	DistancePoint val = LineToPointDistance2D(vertices.get(i), vertices.get(i+1), rest, true);//rayCastIntersect(rest, vertices.get(i), vertices.get(i+1), shortestDist);
-	    	if(val.distance < shortestDistRest.distance) {
-	    		shortestDistRest.distance = val.distance;
-	    		shortestDistRest.intersectPoint = val.intersectPoint;
-	    		shortestI = i;
-	    	}
-	    }
+		if(vertices.size() != 0) {
+			for(int i = 0; i < vertices.size()-1; i++) {
+				DistancePoint val = LineToPointDistance2D(vertices.get(i), vertices.get(i+1), rest, true);
+				if(val.distance < shortestDistRest.distance) {
+					shortestDistRest.distance = val.distance;
+					shortestDistRest.intersectPoint = val.intersectPoint;
+					shortestI = i;
+				}
+			}
 	    
-	    for(int j = 0; j < vertices.size()-1; j++) {
-	    	DistancePoint val = LineToPointDistance2D(vertices.get(j), vertices.get(j+1), you, true);//rayCastIntersect(rest, vertices.get(i), vertices.get(i+1), shortestDist);
-	    	if(val.distance < shortestDistYou.distance) {
-	    		shortestDistYou.distance = val.distance;
-	    		shortestDistYou.intersectPoint = val.intersectPoint;
-	    		shortestJ = j;
-	    	}
-	    }
-	    double totalDist = 0;
-	    if(shortestI <= shortestJ && direction != 1) {
-	    	totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI+1));
-	    	totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ));
-	    	while(shortestI < shortestJ) {
-	    		totalDist += Distance(vertices.get(shortestI), vertices.get(shortestI+1));
-	    		shortestI++;
-	    	}
-	    } else if(shortestJ <= shortestI && direction != -1){
-	    	totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI));
-	    	totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ+1));
-	    	while(shortestJ < shortestI) {
-	    		totalDist += Distance(vertices.get(shortestJ), vertices.get(shortestJ+1));
-	    		shortestJ++;
-	    	}
-	    } else {
-	    	totalDist = 10*Distance(you, rest);
-	    }
+			for(int j = 0; j < vertices.size()-1; j++) {
+				DistancePoint val = LineToPointDistance2D(vertices.get(j), vertices.get(j+1), you, true);
+				if(val.distance < shortestDistYou.distance) {
+					shortestDistYou.distance = val.distance;
+					shortestDistYou.intersectPoint = val.intersectPoint;
+					shortestJ = j;
+				}
+			}
+			double totalDist = 0;
+			if(shortestI <= shortestJ && direction != 1) {
+				totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI+1));
+				totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ));
+				while(shortestI < shortestJ) {
+					totalDist += Distance(vertices.get(shortestI), vertices.get(shortestI+1));
+					shortestI++;
+				}
+			} else if(shortestJ <= shortestI && direction != -1){
+				totalDist += 10*Distance(shortestDistRest.intersectPoint, vertices.get(shortestI));
+				totalDist += 10*Distance(shortestDistYou.intersectPoint, vertices.get(shortestJ+1));
+				while(shortestJ < shortestI) {
+					totalDist += Distance(vertices.get(shortestJ), vertices.get(shortestJ+1));
+					shortestJ++;
+				}
+			} else {
+				totalDist = 10*Distance(you, rest);
+			}
 	    
-		return totalDist;
+			return totalDist;
+		} else {
+			return Double.MAX_VALUE;
+		}
 	}
 	
 	//Compute the dot product AB . AC
